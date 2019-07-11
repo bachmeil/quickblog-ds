@@ -1,0 +1,7 @@
+#! /usr/bin/perl
+if (-e $ARGV[0] . ".md") {
+	my $cmd = "pandoc -s -o " . $ARGV[0] . ".html --template=template2.html --mathjax=https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML " . $ARGV[0] . ".md";
+	system($cmd);
+} else {
+	print $ARGV[0] . ".md does not exist\n";
+}

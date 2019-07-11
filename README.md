@@ -130,7 +130,7 @@ bottom. It opens foo.md in Geany, my editor of choice, so I can add
 content.
 
 More posts can be added in the same way. Since index.md already exists,
-the new post will be added at the top.
+all new posts will be added to the top of the index.
 
 Then build the blog and open `index.html` in Firefox:
 

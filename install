@@ -1,0 +1,11 @@
+#! /bin/bash
+INSTALLDIR=$HOME/bin
+TEMPLATEDIR=$HOME/.quickblog
+chmod a+x allposts editpost newpost onepost viewposts
+ln -s $(pwd)/allposts $INSTALLDIR
+ln -s $(pwd)/editpost $INSTALLDIR
+ln -s $(pwd)/newpost $INSTALLDIR
+ln -s $(pwd)/onepost $INSTALLDIR
+ln -s $(pwd)/viewposts $INSTALLDIR
+mkdir -p $TEMPLATEDIR
+ln -s $(pwd)/template2.html $TEMPLATEDIR

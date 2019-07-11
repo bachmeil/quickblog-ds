@@ -1,8 +1,9 @@
 #! /bin/bash
 NAME=$1
+EDITOR=geany
 if [ -f $NAME.md ]; then
-	geany index.md
-  geany $NAME.md
+	$EDITOR index.md
+  $EDITOR $NAME.md
 else
   echo "File $NAME.md doesn't exist so I'm not going to do anything"
 fi

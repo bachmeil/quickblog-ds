@@ -1,8 +1,8 @@
 # quickblog
 
-Sometimes it's nice to add a blog to a repo as a way to record changes
-and provide updates. There are many static blog generators available,
-so I thought it would be a simple task to add to a repo. After looking
+Sometimes I want to add a blog to a repo as a way to record changes
+and provide updates. Given the number of static blog generators out there,
+adding a static blog to a repo should be a simple task. After looking
 at the most popular static site generators, I saw a lot to dislike,
 including:
 
@@ -11,64 +11,144 @@ including:
 - configuration files
 - metadata
 - strong opinions hardcoded deep in the source code
-- poor documentation combined with weird customization
+- poorly documented weird customization
 - Javascript
+- Nonstandard ways of handling equations, or not handling them at all
 
-All I really wanted was a way to turn a directory of markdown files into
-a blog. No messing with configuration files, no metadata, no limits on
-the ability to customize.
+All I really want to do is take a directory of markdown files and turn 
+it into a blog. That's a straightforward matter, so I shouldn't have to
+mess with configuration files or metadata, have limits on my ability to
+customize, or set up a Git repo.
 
-I'm sure such a system exists, but I couldn't find it, so I wrote one in
-Bash and Perl. Not that these are my favorite languages, but that solves
-the dependency issue, since they'll be on any system I use. The only real
+I'm sure such a system exists, but that certainly doesn't describe the
+most populat static site generators, so I wrote one in Bash and Perl in
+a couple of hours. Not that these are my favorite languages, but that solves
+the dependency issue, since they'll be on any system I use. The only true
 dependency is Pandoc - for converting markdown to html - but that's not
 a problem for me.
 
-The resulting html files are plain. I'm okay with that. Customizing the
-CSS is trivial (editing a Pandoc template). Sometimes all you need is
-a way to get the job done.
+By default, the html files are plain. I'm okay with that, because as a
+way to keep a project journal in a repo, all I need is readability. 
+Customizing the CSS is trivial (you edit a Pandoc template).
 
-# Installation
+# Easy Installation
+
+If you want a default installation, clone this repo and use the included
+Bash script:
+
+```
+bash install
+```
+
+If for some reason that doesn't work:
+
+```
+chmod a+x install
+./install
+```
+
+The only thing to be careful about with the default installation is that
+pulling from upstream can kill any customizations you've made.
+
+# Manual Installation
 
 Here's how I "install". I clone this repo. I create symlinks from
-`allposts`, `editpost`, `newpost`, `onepost`, and `viewposts` to ~/bin
-(which is in my PATH). They should be executable, but if not, I do that.
-Inside `onepost` and `allposts`, I change the variable `$templatedir` to 
-the directory holding this repo (fully expanded, as you can't have a `~`
-in the path).
+`allposts`, `editpost`, `newpost`, `onepost`, and `viewposts` to `~/bin`
+(which is in my PATH). They should be executable, but if not, I `chmod a+x`
+all five of them first:
+
+```
+chmod a+x allposts editpost newpost onepost viewposts
+ln -s $(pwd)/allposts $INSTALLDIR
+ln -s $(pwd)/editpost $INSTALLDIR
+ln -s $(pwd)/newpost $INSTALLDIR
+ln -s $(pwd)/onepost $INSTALLDIR
+ln -s $(pwd)/viewposts $INSTALLDIR
+```
+
+I store the default template `template2.html` in `~/.quickblog`:
+
+```
+mkdir -p $TEMPLATEDIR
+ln -s $(pwd)/template2.html $TEMPLATEDIR
+```
+
+# Customizing the Installation
+
+There are two things you might want to customize during installation: 
+the installation directory and the template directory.
+
+## Installation directory
+
+Open `install` and change `INSTALLDIR` to the directory you want to install
+the scripts. It needs to be a directory in your PATH.
+
+## Template directory
+
+Open `install` and change `TEMPLATEDIR` to the directory you want to store
+your Pandoc html templates. It does not need to be a directory in your
+PATH. Open `allposts` and `onepost` and change the `$TEMPLATE` variable
+as needed.
+
+# Other Customizations
+
+## Template file
+
+You can use any html Pandoc template file you want. Edit the `$TEMPLATE`
+variable in `allposts` and `onepost` if you don't want to use the default.
+
+## Text editor
+
+The default is Geany, but that can be changed by editing `EDITOR` in
+`newpost` and `editpost`.
+
+## Browser
+
+The default browser is Firefox, but that can be changed by editing
+`BROWSER` in `viewposts`.
+
+## Anything else
+
+These are all small, easy to read files. It's easy to customize anything.
+Read the files and make the necessary changes (stackoverflow.com will
+probably be helpful). You are in no way stuck with any decisions I've
+made.
 
 # Usage
 
-In the directory you want to hold your blog (or more accurately, your
-journal), create the first post by typing
+In the directory you want to hold your blog (or perhaps more accurately, 
+your journal), create the first post by typing
 
 ```
 newpost foo 'Foo and Such'
 ```
 
 That creates `index.md` if it doesn't exist. It adds a link to foo.md,
-using the description "Foo and Such", plus the date. It creates the
-file foo.md, adds the header "Foo and Such", and puts the date at the
-bottom. It opens foo.md in Geany, my editor of choice, to add the content.
+using the description "Foo and Such", and the date. It creates the
+file foo.md, adds the header "Foo and Such", and adds the date at the
+bottom. It opens foo.md in Geany, my editor of choice, so I can add 
+content.
 
 More posts can be added in the same way. Since index.md already exists,
 the new post will be added at the top.
 
-I can then build the blog:
-
-```
-allposts
-```
-
-There's an index.html file that can be opened in the browser for viewing - you
-don't need a web server. That works fine if index.html is already open,
-so that I need only to refresh the page. If it's not, I instead call
+Then build the blog and open `index.html` in Firefox:
 
 ```
 viewposts
 ```
 
-That builds the blog and opens index.html in Firefox.
+If I make some changes to the files and don't want to open index.html in
+a new tab, I do
+
+```
+allposts
+```
+
+That rebuilds the blog. I can refresh the browser to see the changes.
+Of course, you can always open index.html (or any other files) in your 
+browser manually if you want. All content is static, so a web server is
+not needed.
 
 If I want to update a post, which means I don't want to mess with index.md,
 I type
@@ -88,14 +168,11 @@ scope of this app) I can call
 onepost foo
 ```
 
-That recreates foo.html and nothing else.
+That rebuilds foo.html and nothing else.
 
 All that needs to be done to make the pages publicly available is copy
 the html files to the web server. If using Github, Bitbucket, or Gitlab
 pages, copying them to the correct directory and pushing is all that is
-needed. I rely mostly on Fossil, so it's a simple call to Fossil commit
-and the new pages are available.
+needed. I rely mostly on Fossil, so I do a Fossil commit and the new 
+pages are automatically available.
 
-These are small, easy to read files. You can customize anything easily.
-You're never required to stick with any decision I've made in order to
-use quickblog.

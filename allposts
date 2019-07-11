@@ -1,11 +1,13 @@
 #! /usr/bin/perl
 use File::Basename;
+my $TEMPLATE='$HOME/.quickblog/template2.html';
+
 opendir(D, ".") || die "Can't open directory: $!\n";
 while (my $f = readdir(D)) {
 	#~ my ($ext) = $f =~ /(\.[^.]+)$/;
 	($file,$dir,$ext) = fileparse($f, qr/\.[^.]*/);
 	if ($ext eq ".md") {
-		my $cmd = "pandoc -s -o " . $file . ".html --template=\$HOME/.quickblog/template2.html --mathjax=https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML " . $file . ".md";
+		my $cmd = "pandoc -s -o " . $file . ".html --template=$TEMPLATE --mathjax=https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML " . $file . ".md";
 		system($cmd)
 	}
 }

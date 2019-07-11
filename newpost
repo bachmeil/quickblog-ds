@@ -1,15 +1,16 @@
 #! /bin/bash
+EDITOR=geany
 NAME=$1
 DESC=$2
 DATE=$(date +'%Y/%m/%d')
 if [ ! -f index.md ]; then
-	printf "# Index Of All Posts\n\n" > index.md
+	printf "# Index Of All Posts\n\n\n\n" > index.md
 fi
 if [ ! -f $NAME.md ]; then
 	sed -i "3 i [$DESC ($DATE)]($NAME.html)  " index.md
 	printf "# $DESC\n\n\n\n*$DATE*" > $NAME.md
-	geany index.md
-	geany $NAME.md
+	$EDITOR index.md
+	$EDITOR $NAME.md
 else
 	echo "File $NAME.md already exists - doing nothing"
 fi

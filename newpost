@@ -8,7 +8,7 @@ if [ ! -f index.md ]; then
 	printf "# Index Of All Posts\n\n\n\n" > index.$EXTENSION
 fi
 if [ ! -f $NAME.md ]; then
-	sed -i "3 i [$DESC ($DATE)]($NAME.html)  " index.EXTENSION
+	sed -i "3 i [$DESC ($DATE)]($NAME.html)  " index.$EXTENSION
 	printf "# $DESC\n\n\n\n*$DATE*" > $NAME.$EXTENSION
 	$EDITOR index.$EXTENSION
 	$EDITOR $NAME.$EXTENSION

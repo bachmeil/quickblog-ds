@@ -59,18 +59,18 @@ all five of them first:
 
 ```
 chmod a+x allposts editpost newpost onepost viewposts
-ln -s $(pwd)/allposts $INSTALLDIR
-ln -s $(pwd)/editpost $INSTALLDIR
-ln -s $(pwd)/newpost $INSTALLDIR
-ln -s $(pwd)/onepost $INSTALLDIR
-ln -s $(pwd)/viewposts $INSTALLDIR
+ln -s $(pwd)/allposts $HOME/bin
+ln -s $(pwd)/editpost $HOME/bin
+ln -s $(pwd)/newpost $HOME/bin
+ln -s $(pwd)/onepost $HOME/bin
+ln -s $(pwd)/viewposts $HOME/bin
 ```
 
 I store the default template `template2.html` in `~/.quickblog`:
 
 ```
 mkdir -p $TEMPLATEDIR
-ln -s $(pwd)/template2.html $TEMPLATEDIR
+ln -s $(pwd)/template2.html $HOME/.quickblog
 ```
 
 # Customizing the Installation

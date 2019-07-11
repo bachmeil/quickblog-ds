@@ -107,12 +107,28 @@ The default is Geany, but that can be changed by editing `EDITOR` in
 The default browser is Firefox, but that can be changed by editing
 `BROWSER` in `viewposts`.
 
+## Content file format
+
+You don't need to use markdown for your content files. If you
+prefer, say, .org files, you can change `EXTENSION` in `newpost`,
+`editpost`, `allposts`, and `onepost` from 'md' to 'org'. I haven't
+tested this feature much, so please file an issue if something doesn't
+work the way it should.
+
+A complete list of input formats supported by Pandoc can be found on the
+[Pandoc documentation site](https://pandoc.org/MANUAL.html#general-options).
+
 ## Anything else
 
 These are all small, easy to read files. It's easy to customize anything.
 Read the files and make the necessary changes (stackoverflow.com will
 probably be helpful). You are in no way stuck with any decisions I've
 made.
+
+You might want to output to PDF rather than html. All you have to do is
+open `allposts` and change the call to Pandoc appropriately. You could
+append all input files to a single file, convert that to PDF with a table
+of contents, and you'd have your full blog in the form of a PDF book.
 
 # Usage
 

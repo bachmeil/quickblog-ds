@@ -1,9 +1,10 @@
 #! /usr/bin/perl
 my $TEMPLATE='$HOME/.quickblog/template2.html';
+my $EXTENSION='md';
 
-if (-e $ARGV[0] . ".md") {
-	my $cmd = "pandoc -s -o " . $ARGV[0] . ".html --template=$TEMPLATE --mathjax=https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML " . $ARGV[0] . ".md";
+if (-e $ARGV[0] . ".$EXTENSION") {
+	my $cmd = "pandoc -s -o " . $ARGV[0] . ".html --template=$TEMPLATE --mathjax=https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML " . $ARGV[0] . ".$EXTENSION";
 	system($cmd);
 } else {
-	print $ARGV[0] . ".md does not exist\n";
+	print $ARGV[0] . ".$EXTENSION does not exist\n";
 }

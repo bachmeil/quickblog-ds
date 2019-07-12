@@ -3,8 +3,7 @@ NAME=$1
 EDITOR=geany
 EXTENSION=md
 if [ -f $NAME.md ]; then
-	$EDITOR index.$EXTENSION
-  $EDITOR "$NAME.$EXTENSION"
+	$EDITOR index.$EXTENSION "$NAME.$EXTENSION"
 else
   echo "File $NAME.md doesn't exist so I'm not going to do anything"
 fi

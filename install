@@ -3,6 +3,7 @@ INSTALLDIR=$HOME/bin
 TEMPLATEDIR=$HOME/.quickblog
 chmod a+x allposts editpost newpost onepost viewposts
 ln -s $(pwd)/allposts $INSTALLDIR
+ln -s $(pwd)/addpost $INSTALLDIR
 ln -s $(pwd)/editpost $INSTALLDIR
 ln -s $(pwd)/newpost $INSTALLDIR
 ln -s $(pwd)/onepost $INSTALLDIR

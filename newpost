@@ -7,7 +7,7 @@ DATE=$(date +'%Y/%m/%d')
 if [ ! -f index.md ]; then
 	printf "# Index Of All Posts\n\n\n\n" > index.$EXTENSION
 fi
-if [ ! -f $NAME.md ]; then
+if [ ! -f $NAME.$EXTENSION ]; then
 	sed -i "3 i [$DESC ($DATE)]($NAME.html)  " index.$EXTENSION
 	printf "# $DESC\n\n\n\n*$DATE*" > $NAME.$EXTENSION
 	$EDITOR index.$EXTENSION

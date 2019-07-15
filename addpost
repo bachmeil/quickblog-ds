@@ -1,0 +1,16 @@
+#! /bin/bash
+EDITOR=geany
+EXTENSION=md
+NAME=$1
+DESC=$2
+DATE=$(date +'%Y/%m/%d')
+if [ -f $NAME.$EXTENSION ]; then
+	if [ ! -f index.md ]; then
+		printf "# Index Of All Posts\n\n\n\n" > index.$EXTENSION
+	fi
+	sed -i "3 i [$DESC ($DATE)]($NAME.html)  " index.$EXTENSION
+	$EDITOR index.$EXTENSION
+	$EDITOR $NAME.$EXTENSION
+else
+	echo "File $NAME.$EXTENSION does not exist - use ./newpost instead"
+fi

@@ -1,4 +1,11 @@
-# quickblog
+# quickblog-ds
+
+This is the same as [quickblog](https://github.com/bachmeil/quickblog)
+but with different CSS, taken from Derek Sivers's website. The CSS in
+the Pandoc template is released under this license (and has not been
+changed):
+
+https://creativecommons.org/licenses/by/4.0/
 
 Sometimes I want to add a blog to a repo as a way to record changes
 and provide updates. Given the number of static blog generators out there,

@@ -4,14 +4,14 @@ EXTENSION=md
 NAME=$1
 DESC=$2
 DATE=$(date +'%Y/%m/%d')
-if [ ! -f index.md ]; then
+if [ ! -f index.$EXTENSION ]; then
 	printf "# Index Of All Posts\n\n\n\n" > index.$EXTENSION
 fi
-if [ ! -f $NAME.md ]; then
+if [ ! -f $NAME.$EXTENSION ]; then
 	sed -i "3 i [$DESC ($DATE)]($NAME.html)  " index.$EXTENSION
 	printf "# $DESC\n\n\n\n*$DATE*" > $NAME.$EXTENSION
 	$EDITOR index.$EXTENSION
 	$EDITOR $NAME.$EXTENSION
 else
-	echo "File $NAME.md already exists - doing nothing"
+	echo "File $NAME.$EXTENSION already exists - doing nothing"
 fi

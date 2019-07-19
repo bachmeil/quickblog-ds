@@ -1,9 +1,10 @@
 #! /bin/bash
 INSTALLDIR=$HOME/bin
 TEMPLATEDIR=$HOME/.quickblog
+rm $INSTALLDIR/addpost 
 rm $INSTALLDIR/allposts 
 rm $INSTALLDIR/editpost
 rm $INSTALLDIR/newpost
 rm $INSTALLDIR/onepost
 rm $INSTALLDIR/viewposts
-rm $TEMPLATEDIR/template2.html 
+rm $TEMPLATEDIR/template2.html

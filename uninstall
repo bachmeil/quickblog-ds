@@ -6,3 +6,4 @@ rm $INSTALLDIR/editpost
 rm $INSTALLDIR/newpost
 rm $INSTALLDIR/onepost
 rm $INSTALLDIR/viewposts
+rm $TEMPLATEDIR/template2.html 
